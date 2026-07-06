@@ -47,8 +47,9 @@ function App() {
   if (cargando) return <div className="h-screen flex items-center justify-center text-2xl font-bold text-blue-600">Cargando...</div>;
   
   const aprobadas = Number(perfil?.materiasAprobadas) || 0;
+  const enCurso = Number(perfil?.materiasEncurso) || 0;
   const total = Number(perfil?.materiasTotal) || 1; // Ponemos 1 para evitar dividir entre 0
-  const porcentajeAvance = Math.round((aprobadas / total) * 100);
+  const porcentajeAvance = Math.round(((aprobadas + enCurso) / total) * 100);
 
   // Función para desplazamiento suave a las secciones
   const irASeccion = (id) => {
@@ -86,6 +87,11 @@ function App() {
             <div className="bg-white border border-slate-200 px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-sm text-center">
               <p className="text-2xl md:text-3xl font-bold text-blue-600">{perfil?.materiasAprobadas || "0"}</p>
               <p className="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-wider">Aprobadas</p>
+            </div>
+
+            <div className="bg-white border border-slate-200 px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-sm text-center">
+              <p className="text-2xl md:text-3xl font-bold text-blue-600">{perfil?.materiasEncurso || "0"}</p>
+              <p className="text-[10px] md:text-xs font-semibold text-slate-500 uppercase tracking-wider">En curso</p>
             </div>
             
             <div className="bg-white border border-slate-200 px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-sm text-center">
